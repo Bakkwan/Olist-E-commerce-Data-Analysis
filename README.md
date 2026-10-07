@@ -49,31 +49,71 @@ This section documents the key SQL queries and data cleaning steps used in this 
 核心发现：延迟超过 7 天，评分从 4.4 降至 3.9；AC 州 cool_stuff 品类评分最低；RFM 识别出高价值客户群。  
 建议优先优化 AC、AL、MA 等州的物流，并对高风险品类设置预警。
 
-## 📌 Project Overview
-Analyzed 100k+ orders from the Olist E-commerce dataset using SQL and Power BI to uncover business insights.
 
-## 📌 Business Problem
+## 📌 Project Overview / 项目概述
+
+Analyzed 100k+ orders from the Olist E-commerce dataset using SQL and Power BI to uncover business insights.  
+使用 SQL 和 Power BI 分析 Olist 电商数据集中的 10 万+ 订单，挖掘业务洞察。
+
+---
+
+## 📌 Business Problem / 业务问题
 
 Does logistics delay significantly affect customer review scores on the Olist platform?  
+物流延迟是否显著影响 Olist 平台的客户评分？
+
 Which states and product categories are most affected?  
-The goal is to identify key drivers of customer satisfaction and provide actionable recommendations.
+哪些州和产品品类受影响最大？
 
-## 🛠 Methodology
-1. **SQL (CTE, Window Functions)** — calculated delivery time, flagged delays, performed RFM segmentation.
-2. **Power BI (DAX, Star Schema)** — built dynamic review attribution model, interactive dashboards.
-3. **Data Cleaning** — filtered `order_status = 'delivered'`, handled nulls and outliers.
+The goal is to identify key drivers of customer satisfaction and provide actionable recommendations.  
+目标是识别客户满意度的关键驱动因素，并提供可落地的建议。
 
-## 📈 Key Insights
-1. **Delivery delay > 7 days drops review score from 4.4 to 3.9** — a 0.5-point gap that directly impacts repeat purchase.
-2. **Sales Trends**: Top product categories include cool_stuff, pet_shop, and consoles_games.
-3. **Customer Segmentation**: Built an RFM model to identify high-value customers.
-4. **AC state has the lowest average score (1.00) for cool_stuff** — urgent need to investigate local logistics.
-5. **RFM analysis identifies a high-value customer segment** — targeted retention strategies can improve LTV.
+---
 
-## 📂 Repository Structure
-- `queries.sql`: SQL scripts for business logic (joins, CTEs, window functions).
-- `dashboard.pdf` (or images): Power BI dashboard screenshots.
+## 🛠 Methodology / 分析方法
 
-## 📊 Dashboard Preview
-- [View Dashboard PDF](olist_Data_analysis.pdf)
+1. **SQL (CTE, Window Functions)** — calculated delivery time, flagged delays, performed RFM segmentation.  
+   **SQL（CTE、窗口函数）** — 计算履约时长，标记延迟订单，进行 RFM 分层。
+
+2. **Power BI (DAX, Star Schema)** — built dynamic review attribution model, interactive dashboards.  
+   **Power BI（DAX、星型模型）** — 构建动态评分归因模型，制作交互式仪表盘。
+
+3. **Data Cleaning** — filtered, handled nulls and outliers. `order_status = 'delivered'`  
+   **数据清洗** — 过滤数据，处理空值和异常值。`order_status = 'delivered'`
+
+---
+
+## 🔍 Key Insights / 核心发现
+
+1. **Delivery delay > 7 days drops review score from 4.4 to 3.9** — a 0.5-point gap that directly impacts repeat purchase.  
+   **延迟超过 7 天，评分从 4.4 降至 3.9** — 0.5 分的差距直接影响复购。
+
+2. **Sales Trends**: Top product categories include cool_stuff, pet_shop, and consoles_games.  
+   **销售趋势**：头部品类包括 cool_stuff、pet_shop 和 consoles_games。
+
+3. **Customer Segmentation**: Built an RFM model to identify high-value customers.  
+   **客户分层**：构建 RFM 模型识别高价值客户。
+
+4. **AC state has the lowest average score (1.00) for cool_stuff** — urgent need to investigate local logistics.  
+   **AC 州 cool_stuff 品类平均评分最低（1.00）** — 急需排查当地物流问题。
+
+5. **RFM analysis identifies a high-value customer segment** — targeted retention strategies can improve LTV.  
+   **RFM 分析识别出高价值客户群** — 针对性留存策略可提升客户终身价值（LTV）。
+
+---
+
+## 📁 Repository Structure / 仓库结构
+
+- `queries.sql` : SQL scripts for business logic (joins, CTEs, window functions).  
+  `queries.sql`：业务逻辑 SQL 脚本（联结、CTE、窗口函数）。
+
+- `dashboard.pdf` (or `images/`): Power BI dashboard screenshots.  
+  `dashboard.pdf`（或 `images/`）：Power BI 仪表盘截图。
+
+---
+
+## 📊 Dashboard Preview / 仪表盘预览
+
+ - [View Dashboard PDF](olist_Data_analysis.pdf)
+ - [查看仪表盘 PDF](olist_Data_analysis.pdf)
 
