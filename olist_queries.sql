@@ -115,10 +115,10 @@ rfm_score AS (
 )
 SELECT 
     customer_unique_id,
-    (r_score + f_score + m_score) AS rfm_total_score,
+    ((5 - r_score) + f_score + m_score) AS rfm_total_score,
     CASE 
-        WHEN (r_score + f_score + m_score) >= 10 THEN 'High Value'
-        WHEN (r_score + f_score + m_score) >= 7 THEN 'Potential'
+        WHEN ((5 - r_score) + f_score + m_score) >= 10 THEN 'High Value'
+        WHEN ((5 - r_score) + f_score + m_score) >= 7 THEN 'Potential'
         ELSE 'Low Value / At Risk'
     END AS customer_segment
 FROM rfm_score;
@@ -135,18 +135,39 @@ FROM rfm_score;
 -- Output / 输出: product_category, total_orders, total_sales, avg_review_score
 -- Key functions / 关键函数: JOIN, GROUP BY, COUNT(DISTINCT), SUM, ROUND, AVG
 -- ------------------------------------------------------------
+WITH order_reviews AS (
+    SELECT
+        order_id,
+        AVG(review_score) AS review_score
+    FROM olist_order_reviews_dataset
+    GROUP BY order_id
+),
+
+category_sales AS (
+    SELECT
+        oi.order_id,
+        p.product_category,
+        SUM(oi.price) AS sales
+    FROM olist_order_items_dataset oi
+    JOIN olist_products_dataset p
+        ON oi.product_id = p.product_id
+    GROUP BY
+        oi.order_id,
+        p.product_category
+)
+
 SELECT
-    p.product_category,
-    COUNT(DISTINCT o.order_id) AS total_orders,
-    ROUND(SUM(oi.price), 2) AS total_sales,
-    ROUND(AVG(r.review_score), 2) AS avg_review_score
-FROM olist_orders_dataset o
-JOIN olist_order_items_dataset oi ON o.order_id = oi.order_id
-JOIN olist_products_dataset p ON oi.product_id = p.product_id
-JOIN olist_order_reviews_dataset r ON o.order_id = r.order_id
+    cs.product_category,
+    SUM(cs.sales) AS total_sales,
+    COUNT(DISTINCT cs.order_id) AS total_orders,
+    AVG(orv.review_score) AS avg_review_score
+FROM category_sales cs
+JOIN olist_orders_dataset o
+    ON cs.order_id = o.order_id
+LEFT JOIN order_reviews orv
+    ON cs.order_id = orv.order_id
 WHERE o.order_status = 'delivered'
-GROUP BY p.product_category
-ORDER BY total_sales DESC;
+GROUP BY cs.product_category;
 
 -- ============================================================
 -- Key Functions Explanation / 关键函数说明
