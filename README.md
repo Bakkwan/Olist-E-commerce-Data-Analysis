@@ -1,5 +1,18 @@
 # Olist E-commerce Data Analysis
 
+
+## 📝 Code Documentation
+
+- Each SQL query includes a comment: `-- Purpose: ...; Input tables: ...; Output: ...`
+- Key functions explained: `NTILE(4)` for quartile segmentation, `DATEDIFF` for delivery duration.
+- Data cleaning note: filtered `order_status = 'delivered'` to exclude incomplete orders.
+
+## 🇨🇳 中文摘要
+
+本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
+核心发现：延迟超过 7 天，评分从 4.4 降至 3.9；AC 州 cool_stuff 品类评分最低；RFM 识别出高价值客户群。  
+建议优先优化 AC、AL、MA 等州的物流，并对高风险品类设置预警。
+
 ## 📌 Project Overview
 Analyzed 100k+ orders from the Olist E-commerce dataset using SQL and Power BI to uncover business insights.
 
