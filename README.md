@@ -1,11 +1,47 @@
 # Olist E-commerce Data Analysis
 
 
-## 📝 Code Documentation
+## 📝 Code Documentation / 代码文档
 
-- Each SQL query includes a comment: `-- Purpose: ...; Input tables: ...; Output: ...`
-- Key functions explained: `NTILE(4)` for quartile segmentation, `DATEDIFF` for delivery duration.
-- Data cleaning note: filtered `order_status = 'delivered'` to exclude incomplete orders.
+This section documents the key SQL queries and data cleaning steps used in this project.  
+本节记录了项目中使用的关键 SQL 查询与数据清洗步骤。
+
+### 1. Delivery Delay Analysis / 物流延迟分析
+
+- **Purpose / 目的**: Calculate actual delivery duration and flag delayed orders to analyze impact on review scores.  
+  计算实际履约时长并标记延迟订单，用于分析延迟对评分的影响。
+- **Input tables / 输入表**: `olist_orders`, `olist_order_reviews`, `olist_order_delivered`
+- **Output / 输出**: `order_id`, `delivery_days`, `delay_flag`, `review_score`
+
+### 2. RFM Segmentation / RFM 客户分层
+
+- **Purpose / 目的**: Perform RFM segmentation to identify high-value customers.  
+  基于最近购买时间、购买频率、消费金额进行 RFM 分层，识别高价值客户。
+- **Input tables / 输入表**: `olist_orders`, `olist_order_payments`, `olist_customers`
+- **Output / 输出**: `customer_id`, `r_score`, `f_score`, `m_score`, `rfm_segment`
+
+### 3. Sales & Review by State / 各州销售与评分
+
+- **Purpose / 目的**: Aggregate sales, orders, and average review score by customer state to identify low-score regions.  
+  按客户所在州汇总销售额、订单量和平均评分，找出低评分高风险地区。
+- **Input tables / 输入表**: `olist_orders`, `olist_order_items`, `olist_customers`, `olist_order_reviews`
+- **Output / 输出**: `customer_state`, `total_sales`, `total_orders`, `avg_review_score`
+
+### 4. Sales & Review by Category / 品类销售与评分
+
+- **Purpose / 目的**: Aggregate sales, orders, and average review score by product category to identify low-score categories.  
+  按产品品类汇总销售额、订单量和平均评分，识别低评分品类。
+- **Input tables / 输入表**: `olist_orders`, `olist_order_items`, `olist_products`, `olist_order_reviews`
+- **Output / 输出**: `product_category`, `total_sales`, `total_orders`, `avg_review_score`
+
+### 5. Data Cleaning Notes / 数据清洗说明
+
+- Filtered `order_status = 'delivered'` to exclude incomplete orders.  
+  只保留 `order_status = 'delivered'` 的订单，排除未完成订单。
+- Handled null `review_score` values.  
+  处理了 `review_score` 为空值的记录。
+- Used `DATEDIFF` to calculate `delivery_days`, excluded negative or outlier values.  
+  使用 `DATEDIFF` 计算 `delivery_days`，排除负值或异常值。
 
 ## 🇨🇳 中文摘要
 
