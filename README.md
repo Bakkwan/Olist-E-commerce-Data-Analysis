@@ -109,6 +109,7 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
 - `dashboard.pdf` (or `images/`): Power BI dashboard screenshots.  
   `dashboard.pdf`（或 `images/`）：Power BI 仪表盘截图。
+- `dashboard_notes.md` : Dashboard 逐页解读与商业建议（中英双语）
 
 ---
 
@@ -116,4 +117,4 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
  - [View Dashboard PDF](olist_Data_analysis.pdf)
  - [查看仪表盘 PDF](olist_Data_analysis.pdf)
- - `dashboard_notes.md` : Dashboard 逐页解读与商业建议（中英双语）
+ - [View Dashboard Notes (中英双语)](dashboard_notes.md)
