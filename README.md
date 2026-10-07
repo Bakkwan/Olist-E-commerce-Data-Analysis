@@ -116,4 +116,4 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
  - [View Dashboard PDF](olist_Data_analysis.pdf)
  - [查看仪表盘 PDF](olist_Data_analysis.pdf)
- - [dashboard_notes.md] : Dashboard 逐页解读与商业建议（中英双语）
+ - `dashboard_notes.md` : Dashboard 逐页解读与商业建议（中英双语）
