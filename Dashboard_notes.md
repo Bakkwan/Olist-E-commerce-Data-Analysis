@@ -153,8 +153,6 @@ Chart 8: Stage Total Orders & Turnover Rate / 图表 8：各阶段订单量与�
 **Insight / 发现:**
 - Order volume decreases progressively from delivery (99,441) to customer_date (96,476).
 - 订单量从 delivery（99,441）到 customer_date（96,476）逐步递减。
-- Turnover rate drops from 0.97 to 0.97 to 0.97 to 0.97 — wait, the chart shows a drop in the later stage.
-- 转化率从 0.97 降至 0.97 再到 0.97——图表显示后期阶段有所下降。
 - The drop from carrier_date to customer_date indicates last-mile delivery issues.
 - 从 carrier_date 到 customer_date 的下降说明最后一公里配送存在问题。
 
