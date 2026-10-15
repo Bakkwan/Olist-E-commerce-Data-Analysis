@@ -34,20 +34,20 @@
 -- Query 1.1: Logistics Delay vs. Review Score / 查询 1.1：物流延迟与评分
 -- Purpose / 目的: Calculate delivery duration and flag delayed orders to analyze impact on review scores.
 --                 计算履约时长并标记延迟订单，用于分析延迟对评分的影响。
--- Input tables / 输入表: olist_orders_dataset, olist_order_reviews_dataset
+-- Input tables / 输入表: olist_orders_dataset(orders), olist_order_reviews_dataset(reviews)
 -- Output / 输出: delivery_status, total_orders, avg_review_score
 -- Key functions / 关键函数: DATEDIFF (delivery duration), CASE WHEN (delay flag), ROUND, AVG
 -- ------------------------------------------------------------
 SELECT 
     CASE 
-        WHEN DATEDIFF(day, order_estimated_delivery_date, order_delivered_customer_date) <= 0 THEN 'On Time / Early'
-        WHEN DATEDIFF(day, order_estimated_delivery_date, order_delivered_customer_date) <= 7 THEN 'Delayed 1-7 Days'
+        WHEN julianday(order_estimated_delivery_date, order_delivered_customer_date) <= 0 THEN 'On Time / Early'
+        WHEN julianday(order_estimated_delivery_date, order_delivered_customer_date) <= 7 THEN 'Delayed 1-7 Days'
         ELSE 'Delayed > 7 Days'
     END AS delivery_status,
     COUNT(DISTINCT o.order_id) AS total_orders,
     ROUND(AVG(r.review_score), 2) AS avg_review_score
-FROM olist_orders_dataset o
-JOIN olist_order_reviews_dataset r ON o.order_id = r.order_id
+FROM orders o
+JOIN reviews r ON o.order_id = r.order_id
 WHERE o.order_status = 'delivered'
 GROUP BY delivery_status
 ORDER BY delivery_status;
@@ -60,7 +60,7 @@ ORDER BY delivery_status;
 -- Query 2.1: Sales & Orders by State (Top 10) / 查询 2.1：各州销售额与订单量（Top 10）
 -- Purpose / 目的: Aggregate total orders and total sales by customer state to identify top-performing regions.
 --                 按客户所在州汇总订单量和销售额，识别表现最好的地区。
--- Input tables / 输入表: olist_orders_dataset, olist_customers_dataset, olist_order_items_dataset
+-- Input tables / 输入表: olist_orders_dataset(orders), olist_customers_dataset(customers), olist_order_items_dataset(items)
 -- Output / 输出: customer_state, total_orders, total_sales
 -- Key functions / 关键函数: JOIN, GROUP BY, COUNT(DISTINCT), SUM, ROUND, LIMIT
 -- ------------------------------------------------------------
@@ -68,9 +68,9 @@ SELECT
     c.customer_state,
     COUNT(DISTINCT o.order_id) AS total_orders,
     ROUND(SUM(oi.price), 2) AS total_sales
-FROM olist_orders_dataset o
-JOIN olist_customers_dataset c ON o.customer_id = c.customer_id
-JOIN olist_order_items_dataset oi ON o.order_id = oi.order_id
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+JOIN items oi ON o.order_id = oi.order_id
 WHERE o.order_status = 'delivered'
 GROUP BY c.customer_state
 ORDER BY total_sales DESC
@@ -86,7 +86,7 @@ LIMIT 10;
 --              r_score = 1 表示最近购买，r_score = 4 表示最久未购买。
 -- Purpose / 目的: Perform RFM segmentation to identify high-value customers based on recency, frequency, and monetary value.
 --                 基于最近购买时间、购买频率、消费金额进行 RFM 分层，识别高价值客户。
--- Input tables / 输入表: olist_customers_dataset, olist_orders_dataset, olist_order_items_dataset
+-- Input tables / 输入表: olist_customers_dataset(customers), olist_orders_dataset(orders), olist_order_items_dataset(items)
 -- Output / 输出: customer_unique_id, rfm_total_score, customer_segment
 -- Key functions / 关键函数: CTE (WITH), NTILE(4) for quartile scoring, CASE WHEN for segmentation
 -- Segmentation rules / 分层规则:
@@ -100,9 +100,9 @@ WITH rfm_base AS (
         MAX(o.order_purchase_timestamp) AS last_purchase_date,
         COUNT(DISTINCT o.order_id) AS frequency,
         SUM(oi.price + oi.freight_value) AS monetary
-    FROM olist_customers_dataset c
-    JOIN olist_orders_dataset o ON c.customer_id = o.customer_id
-    JOIN olist_order_items_dataset oi ON o.order_id = oi.order_id
+    FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+    JOIN items oi ON o.order_id = oi.order_id
     WHERE o.order_status = 'delivered'
     GROUP BY c.customer_unique_id
 ),
@@ -131,7 +131,7 @@ FROM rfm_score;
 -- Query 4.1: Sales & Review by Product Category / 查询 4.1：品类销售与评分
 -- Purpose / 目的: Aggregate total orders, total sales, and average review score by product category.
 --                 按产品品类汇总订单量、销售额和平均评分。
--- Input tables / 输入表: olist_orders_dataset, olist_order_items_dataset, olist_products_dataset, olist_order_reviews_dataset
+-- Input tables / 输入表: olist_orders_dataset(orders), olist_order_items_dataset(items), olist_products_dataset(products), olist_order_reviews_dataset(reviews),product_category_name_translation(category)
 -- Output / 输出: product_category, total_orders, total_sales, avg_review_score
 -- Key functions / 关键函数: JOIN, GROUP BY, COUNT(DISTINCT), SUM, ROUND, AVG
 -- ------------------------------------------------------------
@@ -139,40 +139,41 @@ WITH order_reviews AS (
     SELECT
         order_id,
         AVG(review_score) AS review_score
-    FROM olist_order_reviews_dataset
+    FROM reviews
     GROUP BY order_id
 ),
-
 category_sales AS (
     SELECT
         oi.order_id,
-        p.product_category,
+        pcn.product_category_name_english AS product_category,
         SUM(oi.price) AS sales
-    FROM olist_order_items_dataset oi
-    JOIN olist_products_dataset p
+    FROM items oi
+    JOIN products p
         ON oi.product_id = p.product_id
+	JOIN category pcn
+	    ON p.product_category_name = pcn.product_category_name
     GROUP BY
         oi.order_id,
-        p.product_category
+        pcn.product_category_name_english
 )
-
 SELECT
     cs.product_category,
     SUM(cs.sales) AS total_sales,
     COUNT(DISTINCT cs.order_id) AS total_orders,
     AVG(orv.review_score) AS avg_review_score
 FROM category_sales cs
-JOIN olist_orders_dataset o
+JOIN orders o
     ON cs.order_id = o.order_id
-LEFT JOIN order_reviews orv
+LEFT JOIN reviews orv
     ON cs.order_id = orv.order_id
 WHERE o.order_status = 'delivered'
-GROUP BY cs.product_category;
+GROUP BY cs.product_category
+ORDER BY total_sales DESC;
 
 -- ============================================================
 -- Key Functions Explanation / 关键函数说明
 -- ============================================================
--- DATEDIFF: Calculates the difference between two dates (e.g., delivery duration).
+-- julianday: Calculates the difference between two dates (e.g., delivery duration).
 --           计算两个日期之间的差值（例如：履约时长）。
 -- CASE WHEN: Creates conditional logic (e.g., flag orders delayed > 7 days).
 --            创建条件逻辑（例如：标记延迟超过 7 天的订单）。
