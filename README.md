@@ -1,4 +1,4 @@
-# Olist E-commerce Data Analysis
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/4e6d3b61-9f10-400a-a05e-0009db804b4e" /># Olist E-commerce Data Analysis
 
 
 ## 📝 Code Documentation / 代码文档
@@ -46,8 +46,8 @@ This section documents the key SQL queries and data cleaning steps used in this 
 ## 🇨🇳 中文摘要
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
-核心发现：延迟超过 7 天，评分从 4.4 降至 3.9；AC 州 cool_stuff 品类评分最低；RFM 识别出高价值客户群。  
-建议优先优化 AC、AL、MA 等州的物流，并对高风险品类设置预警。
+核心发现：延迟1–3 天 3.29分 → 延迟4–7 天 2.11分 → 延迟8–14 天 1.67分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
+建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，并将预警阈值前移至“延迟满3天”触发客服主动介入。
 
 
 ## 📌 Project Overview / 项目概述
@@ -85,11 +85,11 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
 ## 🔍 Key Insights / 核心发现
 
-1. **Orders delayed by more than 7 days have an average review score 0.5 points lower than on-time/early orders, suggesting delivery performance is strongly associated with customer satisfaction.  
-   **延迟超过 7 天，评分从 4.4 降至 3.9** — 0.5 分的差距直接影响复购。
+1. **Delay of 1–3 days: 3.29 points → Delay of 4–7 days: 2.11 points → Delay of 8–14 days: 1.67 points. Accordingly, it is recommended that the early warning threshold be brought forward to ‘a delay of three full days’ and that this trigger proactive intervention by customer service.  
+   **延迟1–3 天 3.29分 → 延迟4–7 天 2.11分 → 延迟8–14 天 1.67分** 据此建议将预警阈值前移至“延迟满 3 天”并触发客服主动介入。
 
-2. **Sales Trends**: Top product categories include cool_stuff, pet_shop, and consoles_games.  
-   **销售趋势**：头部品类包括 cool_stuff、pet_shop 和 consoles_games。
+2. **Sales Trends**: The three main markets are SP, RJ and MG.  
+   **销售趋势**：三大主要市场包括 SP / RJ / MG。
 
 3. **Customer Segmentation**: Built an RFM model to identify high-value customers.  
    **客户分层**：构建 RFM 模型识别高价值客户。
@@ -106,12 +106,12 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
 ## 📁 Repository Structure / 仓库结构
 
-- `queries.sql` : SQL scripts for business logic (joins, CTEs, window functions).  
-  `queries.sql`：业务逻辑 SQL 脚本（联结、CTE、窗口函数）。
+- `olist_queries.sql`: SQL scripts for business logic (joins, CTEs, window functions).  
+  `olist_queries.sql`：业务逻辑 SQL 脚本（联结、CTE、窗口函数）。
 
-- `dashboard.pdf` (or `images/`): Power BI dashboard screenshots.  
-  `dashboard.pdf`（或 `images/`）：Power BI 仪表盘截图。
-- `dashboard_notes.md` : Dashboard 逐页解读与商业建议（中英双语）
+- `olist_Data_analysis.pdf` (or `images/`): Power BI dashboard screenshots.  
+  `olist_Data_analysis.pdf`（或 `images/`）：Power BI 仪表盘截图。
+- `Dashboard_notes.md` : Dashboard 逐页解读与商业建议（中英双语）
 
 ---
 
@@ -119,4 +119,4 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
  - [View Dashboard PDF](olist_Data_analysis.pdf)
  - [查看仪表盘 PDF](olist_Data_analysis.pdf)
- - [View Dashboard Notes (中英双语)](dashboard_notes.md)
+ - [View Dashboard Notes (中英双语)](Dashboard_notes.md)
