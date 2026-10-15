@@ -10,8 +10,8 @@
 -- 数据来源：Olist 巴西电商公开数据集（Kaggle），2016-2018 年约 10 万笔订单。
 --
 -- Key Findings / 核心发现:
---   1. Delivery delay > 7 days drops review score from 4.4 to 3.9.
---      延迟超过 7 天，评分从 4.4 降至 3.9。
+--   1. Delay of 1–3 days: 3.29 points → 4–7 days: 2.11 points → 8–14 days: 1.67 points
+--      延迟1–3 天 3.29分 → 4–7 天 2.11 分→ 8–14 天 1.67分。
 --   2. AC state has the lowest average score (1.00) for cool_stuff.
 --      AC 州 cool_stuff 品类平均评分最低（1.00）。
 --   3. RFM analysis identifies a high-value customer segment for retention.
