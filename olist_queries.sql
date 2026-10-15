@@ -2,7 +2,7 @@
 -- Olist E-commerce Data Analysis - SQL Queries
 -- Olist 电商数据分析 - SQL 查询
 -- ============================================================
--- Author / 作者: [BakkwanChan/陈碧云]
+-- Author / 作者:陈碧云 （BakkwanChan）
 -- Date / 日期: 2026-10
 -- Description / 描述: This file contains SQL queries for analyzing Olist e-commerce data, including delivery delay analysis, RFM segmentation, and sales/review aggregation by state and category.
 -- 本文件包含用于分析 Olist 电商数据的 SQL 查询，包括物流延迟分析、RFM 分层、以及按州和品类的销售与评分汇总。
