@@ -1,5 +1,3 @@
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/4e6d3b61-9f10-400a-a05e-0009db804b4e" /># Olist E-commerce Data Analysis
-
 
 ## 📝 Code Documentation / 代码文档
 
