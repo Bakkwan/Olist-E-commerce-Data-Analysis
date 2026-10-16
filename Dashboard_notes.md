@@ -192,8 +192,8 @@ Final Page: Business Recommendations Summary / 末页：商业建议汇总
 - ## 💡 Business Recommendations Summary / 商业建议汇总
 
 1. **Logistics Optimization / 物流优化**
-   - Prioritize AC, AL, and MA states for logistics improvement.
-   - 优先优化 AC、AL、MA 三州的物流。
+   - After applying the sample size threshold of ≥30, priority is given to low-scoring states with sufficient samples, such as MA (3.61).
+   - 基于样本量≥30阈值后，优先关注MA(3.61)等样本充足的低评分州。
    - Set up delay alerts for orders exceeding 7 days.
    - 对超过 7 天的订单设置延迟预警。
 
