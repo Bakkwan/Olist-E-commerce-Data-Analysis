@@ -40,8 +40,8 @@
 -- ------------------------------------------------------------
 SELECT 
     CASE 
-        WHEN julianday(order_estimated_delivery_date, order_delivered_customer_date) <= 0 THEN 'On Time / Early'
-        WHEN julianday(order_estimated_delivery_date, order_delivered_customer_date) <= 7 THEN 'Delayed 1-7 Days'
+        WHEN julianday(order_delivered_customer_date)- julianday(order_estimated_delivery_date) <= 0 THEN 'On Time / Early'
+       WHEN julianday(order_delivered_customer_date)- julianday(order_estimated_delivery_date) BETWEEN 1 AND 7 THEN 'Delayed 1-7 Days'
         ELSE 'Delayed > 7 Days'
     END AS delivery_status,
     COUNT(DISTINCT o.order_id) AS total_orders,
@@ -49,8 +49,7 @@ SELECT
 FROM orders o
 JOIN reviews r ON o.order_id = r.order_id
 WHERE o.order_status = 'delivered'
-GROUP BY delivery_status
-ORDER BY delivery_status;
+GROUP BY delivery_status;
 
 -- ============================================================
 -- Section 2: Sales & Review by State / 第二部分：各州销售与评分
