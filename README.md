@@ -93,9 +93,9 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
    **客户分层**：构建 RFM 模型识别高价值客户。
 
 4. **Observed anomaly in AC state for cool_stuff**:
-   The initial analysis showed AC state has the lowest average review score (1.00) for cool_stuff.        However, upon verifying the sample size, this was found to be based on a single order. This            highlights the importance of validating data sufficiency before drawing business conclusions.          Future analysis should incorporate a minimum order threshold (e.g., >30 reviews) to ensure             statistical relevance  
+   Based on a sample size threshold of ≥30, priority should be given to states with low ratings but sufficient sample sizes, such as MA (3.61). This highlights the importance of verifying data adequacy before drawing business conclusions; future analyses should set a minimum order threshold (e.g. >30 reviews) to ensure statistical significance. 
    **AC 州 cool_stuff 品类异常值观察**：
-   初步分析显示 AC 州该品类平均评分最低（1.00）。然而，经核实样本量，此结果仅基于1个订单。这凸显了在       得出商业结论前验证数据充分性的重要性。未来分析应设定最低订单阈值（如 >30 条评价）以确保统计相关性。
+   基于样本量≥30阈值后，优先关注MA(3.61)等样本充足的低评分州。这凸显了在得出商业结论前验证数据充分性的重要性,未来分析应设定最低订单阈值（如 >30 条评价）以确保统计相关性。
 
 5. **RFM analysis identifies a high-value customer segment** — targeted retention strategies can improve LTV.  
    **RFM 分析识别出高价值客户群** — 针对性留存策略可提升客户终身价值（LTV）。
