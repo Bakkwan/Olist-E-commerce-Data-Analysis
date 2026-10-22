@@ -44,7 +44,7 @@ This section documents the key SQL queries and data cleaning steps used in this 
 ## 🇨🇳 中文摘要
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
-核心发现：延迟1–3 天 3.29分 → 延迟4–7 天 2.11分 → 延迟8–14 天 1.67分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
+核心发现：准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
 建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，并将预警阈值前移至“延迟满3天”触发客服主动介入。
 
 
@@ -83,8 +83,8 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
 ## 🔍 Key Insights / 核心发现
 
-1. **Delay of 1–3 days: 3.29 points → Delay of 4–7 days: 2.11 points → Delay of 8–14 days: 1.67 points. Accordingly, it is recommended that the early warning threshold be brought forward to ‘a delay of three full days’ and that this trigger proactive intervention by customer service.  
-   **延迟1–3 天 3.29分 → 延迟4–7 天 2.11分 → 延迟8–14 天 1.67分** 据此建议将预警阈值前移至“延迟满 3 天”并触发客服主动介入。
+1. **On time/early 4.21 points → Delayed 1–7 days 2.68 points → Delayed more than 7 days 1.69 points. Based on this, it is recommended to move the early warning threshold forward to orders that are not completed on time and trigger proactive customer service intervention. 
+   **准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分** 据此建议将预警阈值前移至未能准时完成的订单并触发客服主动介入。
 
 2. **Sales Trends**: The three main markets are SP, RJ and MG.  
    **销售趋势**：三大主要市场包括 SP / RJ / MG。
@@ -115,6 +115,5 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 
 ## 📊 Dashboard Preview / 仪表盘预览
 
- - [View Dashboard PDF](olist_Data_analysis.pdf)
- - [查看仪表盘 PDF](olist_Data_analysis.pdf)
+ - [查看仪表盘 PDF / View Dashboard PDF](<Olist 电商平台履约时效与客户满意度分析.pdf>)
  - [View Dashboard Notes (中英双语)](Dashboard_notes.md)
