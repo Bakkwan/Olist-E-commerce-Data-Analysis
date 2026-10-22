@@ -7,12 +7,12 @@ KPI Cards / 指标卡
 -------------------
 ## 📊 Dashboard Overview / 仪表盘总览
 
-| Metric / 指标 | Value / 数值 | Target / 目标 | Growth / 增长 |
-|---------------|-------------|---------------|---------------|
-| Total Sales / 总销售额 | 902,554.31 | 300,851.44 | +200% |
-| Total Orders / 总订单量 | 5,833.00 | 1,944.33 | +200% |
-| AVG Customer Unit Price / 平均客单价 | 156.75 | 88.20 | +77.73% |
-| Customer Quantity / 客户数量 | 52,749.00 | — | +1,226.14% |
+| Metric / 指标 | Value / 数值 |
+|---------------|-------------|
+| Total Sales / 总销售额 | 13,221,498.11 | 
+| Total Orders / 总订单量 | 93,358 | 
+| AVG Customer Unit Price / 平均客单价 | 141.62 |
+| Customer Quantity / 客户数量 | 93,358 | 
 
 Chart 1: Total Sales & Orders by Year/Month / 图表 1：年度/月度销售额与订单量
 -------------------------------------------------------------------------------
@@ -31,165 +31,203 @@ Chart 1: Total Sales & Orders by Year/Month / 图表 1：年度/月度销售额�
 - 排查2018年9月的骤降原因——检查数据缺失或运营问题。
 - Prepare inventory and logistics for Black Friday peaks.
 - 为黑五峰值提前准备库存和物流。
- 
-Chart 2: Order Distribution by State (Map) / 图表 2：各州订单分布（地图）
-------------------------------------------------------------------------
-### 🗺 Order Distribution by State / 各州订单分布
 
-**Insight / 发现:**
-- Orders are heavily concentrated in the Southeast region (São Paulo, Rio de Janeiro, Minas Gerais).
-- 订单主要集中在东南部地区（圣保罗、里约热内卢、米纳斯吉拉斯）。
-- Northern and Central-West regions have significantly lower order volumes.
-- 北部和中西部地区的订单量明显较低。
-
-**Recommendation / 建议:**
-- Focus logistics optimization on high-volume states first.
-- 优先优化高订单量州的物流。
-- Explore growth opportunities in underserved regions.
-- 探索低覆盖地区的增长机会。
-
-Chart 3: Top Orders by Product Category / 图表 3：品类订单量排名
-------------------------------------------------------------------
-### 📦 Top Orders by Product Category / 品类订单量排名
-
-**Insight / 发现:**
-- cool_stuff leads with 3,632 orders, followed by pet_shop (1,710) and consoles_games (1,062).
-- cool_stuff 以 3,632 单领先，其次为 pet_shop（1,710）和 consoles_games（1,062）。
-- audio, market_place, dvds_blu_ray, and la_cuisine have significantly lower volumes.
-- audio、market_place、dvds_blu_ray 和 la_cuisine 订单量明显较低。
-
-**Recommendation / 建议:**
-- Prioritize stock and marketing for top categories.
-- 优先为头部品类备货和推广。
-- Evaluate whether low-volume categories are worth keeping.
-- 评估低销量品类是否值得继续运营。
 
 -------------------------------------------------------------------------
-Page 2: Category Performance & Geolocation / 第二页：品类表现与地理分布
+Page 2: Performance Period / 第二页：履约时效
 -------------------------------------------------------------------------
 
-Chart 4: Total Sales & AVG Price by Category / 图表 4：品类销售额与均价
+Chart 2: Deferred Bucketing vs Scoring / 图表 2：延迟分档 vs 评分
 ------------------------------------------------------------------------
-### 💰 Total Sales & AVG Price by Category / 品类销售额与均价
+### 💰  Deferred Bucketing vs Scoring / 延迟分档 vs 评分
 
 **Insight / 发现:**
-- cool_stuff generates the highest total sales (~729,806 BRL) but has a relatively low average price (~167 BRL).
-- cool_stuff 销售额最高（约 729,806 巴西雷亚尔），但均价较低（约 167 巴西雷亚尔）。
-- pet_shop has moderate sales (~255,330 BRL) and lower average price (~110 BRL).
-- pet_shop 销售额中等（约 255,330 巴西雷亚尔），均价较低（约 110 巴西雷亚尔）。
-- dvds_blu_ray has high average price (~147 BRL) but low total sales (~7,412 BRL).
-- dvds_blu_ray 均价较高（约 147 巴西雷亚尔），但总销售额较低（约 7,412 巴西雷亚尔）。
+- Orders delayed by more than 7 days have an average rating of 1.70, which is 2.51 points lower than orders delivered on time or early (4.21).
+- 延迟 >7 天的订单平均评分 1.70，比准时/提前档（4.21）低 2.51 分。
+- Deteriorates monotonically with delay duration—on time/early 4.21 → 1–7 days late 2.68 → more than 7 days late 1.69.
+- 随延迟时长单调恶化——准时/提前 4.21 → 1–7 天 2.68 → 延迟7天以上 1.69。
+- The steepest decline occurs in the 1–7 day delay period.
+- 最陡峭的下跌发生在开始延迟 1–7 天区间。
 
 **Recommendation / 建议:**
-- For high-volume, low-price categories (cool_stuff), focus on logistics efficiency and repeat purchases.
-- 对高销量低均价品类（cool_stuff），重点提升物流效率和复购率。
-- For high-price, low-volume categories (dvds_blu_ray), consider premium marketing or bundling.
-- 对高价低销量品类（dvds_blu_ray），考虑高端营销或捆绑销售。
+- Advance the warning threshold to when orders are not completed on time, prioritizing the compression of long-tail timeliness rather than the average.
+- 预警阈值前移至未能准时完成订单，优先压缩长尾时效而非平均值。
+
   
-Chart 5: Sales Heat Map by State / 图表 5：各州销售热力图
+Chart 3: Order volume by tier / 图表 3：各档订单量
 ----------------------------------------------------------
-### 🔥 Sales Heat Map by State / 各州销售热力图
+### 🔥 Order volume by tier / 各档订单量
 
 **Insight / 发现:**
-- Southeast states (SP, RJ, MG) show the highest sales density.
-- 东南部各州（SP、RJ、MG）销售密度最高。
-- Northern states have low sales density but may have growth potential.
-- 北部各州销售密度低，但可能存在增长潜力。
+- The on-time/early completion of orders reached 86,984 units, accounting for 93.17% of the total.
+- 订单准时/提前完成度高达86984份，占总数的93.17%。
+- There are 3,585 delayed cases, accounting for 3.84% of the total.
+- 延迟的有3585份，占总数的3.84%。
 
 **Recommendation / 建议:**
-- Maintain strong logistics in Southeast.
-- 维持东南部物流优势。
-- Run targeted campaigns in low-density regions to test demand.
-- 在低密度地区开展定向营销，测试需求。
+- Focus on optimizing extended delivery times in order to maximize the number of orders
+- 专注优化延配送时长，以便能最大化的提升订单量。
 
------------------------------------------------------------
-Page 3: Delivery Time Distribution / 第三页：物流时效分布
------------------------------------------------------------
+  
 
-Chart 6: Delivery Time Distribution / 图表 6：物流时效分布
------------------------------------------------------------
-### 🚚 Delivery Time Distribution / 物流时效分布
+Chart 4: Delivery Time Distribution / 图表 4：妥投时长分布
+----------------------------------------------------------
+### 🔥 Delivery Time Distribution / 妥投时长分布
 
 **Insight / 发现:**
-- 33.18% of orders are delivered within 0-3 days.
-- 33.18% 的订单在 0-3 天内送达。
-- 33.18% take 4-7 days.
-- 33.18% 需要 4-7 天。
-- A significant portion takes more than 7 days.
-- 仍有相当比例的订单超过 7 天。
+- Orders are mainly delivered within 8-14 days.
+- 订单主要以8-14天配送时长为主。
+- Overall, the 4-15 day delivery range accounts for the vast majority of total orders.
+- 总体来看，4-15天这个配送区间占据了总订单数的绝大部分。
 
 **Recommendation / 建议:**
-- Set up delay alerts for orders exceeding 7 days.
-- 对超过 7 天的订单设置延迟预警。
-- Work with logistics partners to reduce the 7+ day segment.
-- 与物流合作方协作，压缩 7 天以上的订单比例。
+- Focus on optimizing extended delivery times in order to maximize the number of orders.
+- 专注优化延配送时长，以便能最大化的提升订单量。
+
+
+Chart 5: Delay Days Scatter / 图表 5：延迟天数散点
+----------------------------------------------------------
+### 🔥 Delay Days Scatter / 延迟天数散点
+
+**Insight / 发现:**
+- Negatively correlated with the delay in delivery time.
+- 随着配送时间的延迟呈负相关。
+
+**Recommendation / 建议:**
+- Focus on optimizing extended delivery times in order to maximize the number of orders.
+- 专注优化延配送时长，以便能最大化的提升订单量。
+
+-----------------------------------------------------------
+Page 3: Region and Category / 第三页：区域与品类
+-----------------------------------------------------------
+
+Chart 6: State Distribution / 图表 6：州分布
+-----------------------------------------------------------
+### 🚚 State Distribution / 州分布
+
+**Insight / 发现:**
+- SP / RJ / MG together contribute 63.38% of GMV.
+- SP / RJ / MG 合计贡献 63.38% 的 GMV。
+
+**Recommendation / 建议:**
+- Focus on the performance situation in the three states of SP / RJ / MG.
+- 着重关注SP / RJ / MG 三个州的履约情况。
+
+
+Chart 7: State GMV Top 10 / 图表 7：州 GMV TOP10
+-----------------------------------------------------------
+### 🚚 State GMV Top 10 / 州 GMV TOP10
+
+**Insight / 发现:**
+- SP / RJ / MG together contribute 63.38% of GMV.
+- SP / RJ / MG / RS / PR / SC / BA / DF / GO / ES 这十个州市GMV的前十。
+**Recommendation / 建议:**
+- Focus on the compliance situation in these ten states.
+- 着重关注这十个州的履约情况。
+
+
+Chart 8: Category GMV Top 10 / 图表 8：品类 GMV Top10
+-----------------------------------------------------------
+### 🚚 Category GMV Top 10 / 品类 GMV Top10
+
+**Insight / 发现:**
+- health_beauty, watches_gifts, and bed_bath_table are the three main consumer product categories
+- health_beauty , watches_gifts , bed_bath_table 三个品类为主力消费品类。
+**Recommendation / 建议:**
+- Focus on the fulfillment status of three categories to increase order volume.
+- 着重关注三个品类的履约情况以提高订单量。
+
+
+Chart 9: Product Category Matrix / 图表 9：品类矩阵
+-----------------------------------------------------------
+### 🚚 Product Category Matrix / 品类矩阵
+
+**Insight / 发现:**
+- bed_bath_table is the only combination of 'high sales (9,272 orders) + relatively low rating (3.92 points)'
+- bed_bath_table是唯一“销量头部（9,272单）+评分偏低（3.92分）”的组合
+**Recommendation / 建议:**
+- Improving the ratings of the bed_bath_table category will have the greatest impact on overall satisfaction.
+- 改善bed_bath_table品类的评分度会对整体满意度拉动最大。
+
+
+Chart 10: State Average Score / 图表 10：州平均评分
+-----------------------------------------------------------
+### 🚚 State Average Score / 州平均评分
+
+**Insight / 发现:**
+- The average scores of the states SP / RJ / MG are relatively high, and their sales are leading.
+- SP / RJ / MG 州的平均评分相对较高且销售额靠前。
+**Recommendation / 建议:**
+- Continue to focus on optimizing the average ratings of states with top GMV rankings.
+- 继续着重优化GMV排名靠前的州平均评分。
+
 
 -------------------------------------------------
-Page 4: Review Score Analysis / 第四页：评分分析
+Page 4: RFM Customer Segmentation / 第四页：RFM 客户分层
 -------------------------------------------------
 
-Chart 7: Review Score Trend by Month / 图表 7：月度评分趋势
+Chart 11: Proportion of People vs Contribution Amount / 图表 11：人数占比 vs 金额贡献
 ------------------------------------------------------------
-### ⭐ Review Score Trend by Month / 月度评分趋势
+### ⭐ Proportion of People vs Contribution Amount / 人数占比 vs 金额贡献
 
 **Insight / 发现:**
-- Review scores remained stable around 4.0-4.2 for most months.
-- 大多数月份评分稳定在 4.0-4.2 之间。
-- A sharp drop occurred in early months (1.00 in October 2016) — likely due to low sample size.
-- 早期月份出现明显下降（2016年10月仅1.00分）——可能是样本量过小所致。
-- Scores dipped again in March 2018 (3.75) and April 2018 (3.83).
-- 2018年3月（3.75）和4月（3.83）再次出现下滑。
+- High-value customers have a spending amount of up to 7,694 BRL, with a customer count of 23,542, far fewer than the number of potential customers (34,450) and low-value/at-risk customers (353,666)
+- 高价值客户消费金额高达7,694BRL，客户数为23542，远远少于潜力客户人数（34450）和低价值/流失风险客户（353666）
+- There is not much difference in the number of potential customers and low-value/at-risk customers.
+- 潜力客户和低价值/流失风险的客户人数差距不大。
 
 **Recommendation / 建议:**
-- Investigate the March-April 2018 dip — correlate with logistics delays or product issues.
-- 排查2018年3-4月的下滑——与物流延迟或产品问题关联分析。
-- Monitor monthly scores as a KPI for customer satisfaction.
-- 将月度评分作为客户满意度的关键指标持续监控。
+- Focus on increasing the number of high-value customers and strive to further promote GMV growth.
+- 着重高价值客户的人数的增加，争取更大程度上促进GMV的增长。
+- Continuously optimize to promote the conversion of potential customers and low-value/at-risk customers into higher-value customers.
+- 持续优化促进潜力客户和低价值/流失风险客户向更高价值的客户转化。
 
-Chart 8: Stage Total Orders & Turnover Rate / 图表 8：各阶段订单量与转化率
+
+Chart 12: Layered details / 图表 12：分层明细
+------------------------------------------------------------
+### ⭐ Layered details / 分层明细
+
+**Insight / 发现:**
+- 25.2% of high-value customers contribute nearly half (49.9%) of the total spending, with an average consumption of 326.85 BRL, which is 5.7 times that of low-value customers (57.21).
+- 25.2% 的高价值客群贡献近半（49.9%）消费金额，人均消费 326.85 BRL 是低价值客群（57.21）的 5.7 倍。
+
+**Recommendation / 建议:**
+- Layer A offers exclusive benefits and a priority customer service channel; Layer B focuses on increasing frequency (average frequency per person is only 1.03, with the most room for growth); Layer C conducts small-amount recall A/B tests, rather than distributing coupons widely.
+- A 层配专属权益与优先客服通道；B 层做提频（人均频次仅 1.03，上升空间最大）；C 层做小额召回 A/B 测试，而非普遍撒券。
+
+Chart 13: Layered × State / 图表 13：分层×州
 ----------------------------------------------------------------------------
-- ### 📉 Stage Total Orders & Turnover Rate / 各阶段订单量与转化率
+- ### 📉 Layered × State /分层×州
 
 **Insight / 发现:**
-- Order volume decreases progressively from delivery (99,441) to customer_date (96,476).
-- 订单量从 delivery（99,441）到 customer_date（96,476）逐步递减。
-- The drop from carrier_date to customer_date indicates last-mile delivery issues.
-- 从 carrier_date 到 customer_date 的下降说明最后一公里配送存在问题。
+- High-value customers in SP state account for the highest proportion, while potential customers and low-value/customers at risk of churn account for a larger proportion.
+- SP 州的高价值客户占比最高，同时潜力客户和低价值/流失风险的客户占比更大。
 
 **Recommendation / 建议:**
-- Focus on last-mile delivery to reduce order loss.
-- 重点关注最后一公里配送，减少订单流失。
-- Identify carriers with high drop-off rates.
-- 识别高流失率的承运商。
+- While maintaining the number of high-value users, gradually convert potential customers and low-value/at-risk customers into high-value customers to promote GMV growth.
+- 保持高价值用户数量的同时逐步将潜力客户和低价值/流失风险的客户转化为高价值客户，以促进GMV的提升。
 
-Chart 9: Customer Score Matrix by State & Category / 图表 9：各州与品类客户评分矩阵
---------------------------------------------------------------------------------------
-- ### 📋 Customer Score Matrix by State & Category / 各州与品类客户评分矩阵
+------------------------------------------------------------------
+Final Page: Data Quality and Small Sample Risk / 末页：数据质量与小样本风险
+------------------------------------------------------------------
+- ## 💡 Data Quality and Small Sample Risk / 数据质量与小样本风险
+
+  
+Chart 14: Sample size compliance status, AC state cases / 图表 14： 样本量达标情况、AC 州案例
+----------------------------------------------------------------------------
+- ### 📉 Sample size compliance status, AC state cases /  样本量达标情况、AC 州案例
 
 **Insight / 发现:**
-- Overall average score is 4.15.
-- 整体平均评分为 4.15。
-- AC state has the lowest score (1.00) for cool_stuff — urgent issue.
-- AC 州 cool_stuff 品类评分最低（1.00）——需紧急处理。
-- MA state has the lowest overall average (3.61).
-- MA 州整体平均分最低（3.61）。
-- MS state has a relatively high average (4.20).
-- MS 州平均分较高（4.20）。
-- pet_shop scores consistently high across states (4.24 overall).
-- pet_shop 在各州评分普遍较高（整体 4.24）。
+- HPreliminary analysis shows that the average rating for the cool_stuff category in AC state is only 1.00, and it was once listed as an area requiring urgent attention. After reviewing the sample size, it was confirmed that this conclusion was based on only one order, and it has been retracted.
+- 初步分析显示 AC 州 cool_stuff 品类平均评分仅 1.00，一度被列为需紧急处理的区域。回溯样本量后确认该结论仅由 1 条订单构成，已撤回。
+- Further statistics show that: the state × category matrix has a total of 1,388 combinations, of which 990 (71.33%) have a sample size of less than 30.
+- 进一步统计发现：州×品类矩阵共 1,388 个组合，其中 990 个（71.33%）样本量不足 30。
 
 **Recommendation / 建议:**
-- Prioritize AC and MA states for logistics and service improvement.
-- 优先改善 AC 和 MA 州的物流与服务。
-- Investigate cool_stuff issues in AC state immediately.
-- 立即排查 AC 州 cool_stuff 品类的问题。
-- Use pet_shop as a benchmark for other categories.
-- 以 pet_shop 作为其他品类的标杆。
+- Accordingly, add the minimum sample threshold rule 'only include in the ranking if the score >= 30' in the dashboard.
+- 据此在看板中加入“评分数 >= 30 才纳入排名”的最小样本阈值规则。
 
-------------------------------------------------------------------
-Final Page: Business Recommendations Summary / 末页：商业建议汇总
-------------------------------------------------------------------
-- ## 💡 Business Recommendations Summary / 商业建议汇总
+
 
 1. **Logistics Optimization / 物流优化**
    - After applying the sample size threshold of ≥30, priority is given to low-scoring states with sufficient samples, such as MA (3.61).
