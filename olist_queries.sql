@@ -10,8 +10,8 @@
 -- 数据来源：Olist 巴西电商公开数据集（Kaggle），2016-2018 年约 10 万笔订单。
 --
 -- Key Findings / 核心发现:
---   1. Delay of 1–3 days: 3.29 points → 4–7 days: 2.11 points → 8–14 days: 1.67 points
---      延迟1–3 天 3.29分 → 4–7 天 2.11 分→ 8–14 天 1.67分。
+--   1. On time / early 4.21 points → 1–7 days 2.68 points → more than 7 days 1.69 points.
+--      准时/提前 4.21分 → 1–7 天 2.68 分→ 7 天以上 1.69分。
 --   2. AC state has the lowest average score (1.00) for cool_stuff.
 --      AC 州 cool_stuff 品类平均评分最低（1.00）。
 --   3. RFM analysis identifies a high-value customer segment for retention.
