@@ -58,7 +58,7 @@ Analyzed 93,358 orders from the Olist E-commerce dataset using SQL and Power BI 
 ## 📌 Business Problem / 业务问题
 
 Does logistics delay significantly affect customer review scores on the Olist platform?  
-物流延迟是否显著影响 Olist 平台的客户评分？
+物流延迟是否影响 Olist 平台的客户评分？
 
 Which states and product categories are most affected?  
 哪些州和产品品类受影响最大？
