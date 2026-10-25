@@ -50,8 +50,8 @@ This section documents the key SQL queries and data cleaning steps used in this 
 
 ## 📌 Project Overview / 项目概述
 
-Analyzed 100k+ orders from the Olist E-commerce dataset using SQL and Power BI to uncover business insights.  
-使用 SQL 和 Power BI 分析 Olist 电商数据集中的 10 万+ 订单，挖掘业务洞察。
+Analyzed 93,358 orders from the Olist E-commerce dataset using SQL and Power BI to uncover business insights.  
+使用 SQL 和 Power BI 分析 Olist 电商数据集中的 93,358 笔订单，挖掘业务洞察。
 
 ---
 
