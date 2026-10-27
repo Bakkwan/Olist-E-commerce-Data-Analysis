@@ -36,14 +36,14 @@ This section documents the key SQL queries and data cleaning steps used in this 
 
 - Filtered `order_status = 'delivered'` to exclude incomplete orders.  
   只保留 `order_status = 'delivered'` 的订单，排除未完成订单。
-- Used `DATEDIFF` to calculate `delivery_days`, excluded negative or outlier values.  
-  使用 `DATEDIFF` 计算 `delivery_days`，排除负值或异常值。
+- Used `julianday` to calculate `delivery_days`, excluded negative or outlier values.  
+  使用 `julianday` 计算 `delivery_days`，排除负值或异常值。
 
 ## 🇨🇳 中文摘要
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
-核心发现：准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
-建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，建议先识别可能延迟的订单，再根据风险程度决定是否升级处理。
+核心发现：准时/提前(86,984单) 4.21分 → 延迟1–7 天（3,585单） 2.68分 → 延迟7天以上（2,781单） 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
+建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，建议先识别可能延迟的订单，再根据风险程度决定是否升级干预处理。
 
 
 ## 📌 Project Overview / 项目概述
@@ -79,8 +79,8 @@ How should the platform identify and handle high-risk orders?
 
 ## 🔍 Key Insights / 核心发现
 
-1. **On time/early 4.21 points → Delayed 1–7 days 2.68 points → Delayed more than 7 days 1.69 points. Based on this, it is recommended to move the early warning threshold forward to orders that are not completed on time and trigger proactive customer service intervention. 
-   **准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分** 据此建议先识别可能延迟的订单，再根据风险程度决定是否需要触发客服主动介入。
+1. **On time/Early (86,984 orders) 4.21 points → Delayed 1–7 days (3,585 orders) 2.68 points → Delayed more than 7 days (2,781 orders) 1.69 points.It is recommended to first identify orders that may be delayed, and then decide whether to escalate intervention based on the level of risk.
+   **准时/提前(86,984单) 4.21分 → 延迟1–7 天（3,585单） 2.68分 → 延迟7天以上（2,781单） 1.69分** 建议先识别可能延迟的订单，再根据风险程度决定是否升级干预处理。
 
 2. **Sales Trends**: The three main markets are SP, RJ and MG.  
    **销售趋势**：三大主要市场包括 SP / RJ / MG。
