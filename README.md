@@ -57,21 +57,19 @@ Analyzed 93,358 orders from the Olist E-commerce dataset using SQL and Power BI 
 
 ## 📌 Business Problem / 业务问题
 
-Does logistics delay significantly affect customer review scores on the Olist platform?  
-物流延迟是否影响 Olist 平台的客户评分？
+What is the relationship between delivery delays and customer satisfaction?  
+配送延迟与客户满意度有什么关系？
 
-Which states and product categories are most affected?  
-哪些州和产品品类受影响最大？
+How should the platform identify and handle high-risk orders?
+平台应该如何识别并处理高风险订单？
 
-The goal is to identify key drivers of customer satisfaction and provide actionable recommendations.  
-目标是识别客户满意度的关键驱动因素，并提供可落地的建议。
 
 ---
 
 ## 🛠 Methodology / 分析方法
 
-1. **SQL (CTE, Window Functions)** — calculated delivery time, flagged delays, performed RFM segmentation.  
-   **SQL（CTE、窗口函数）** — 计算履约时长，标记延迟订单，进行 RFM 分层。
+1. **SQL ( Window Functions)** — calculated delivery time, flagged delays, performed RFM segmentation.  
+   **SQL（窗口函数）** — 计算履约时长，标记延迟订单，进行 RFM 分层。
 
 2. **Power BI (DAX, Star Schema)** — built dynamic review attribution model, interactive dashboards.  
    **Power BI（DAX、星型模型）** — 构建动态评分归因模型，制作交互式仪表盘。
@@ -100,12 +98,14 @@ The goal is to identify key drivers of customer satisfaction and provide actiona
 5. **RFM analysis identifies a high-value customer segment** — targeted retention strategies can improve LTV.  
    **RFM 分析识别出高价值客户群** — 针对性留存策略可提升客户终身价值（LTV）。
 
+--注：物流时效基于日期（Date）粒度计算，不足24小时的差异视为当天达，归类为‘准时’。
+
 ---
 
 ## 📁 Repository Structure / 仓库结构
 
-- `olist_queries.sql`: SQL scripts for business logic (joins, CTEs, window functions).  
-  `olist_queries.sql`：业务逻辑 SQL 脚本（联结、CTE、窗口函数）。
+- `olist_queries.sql`: SQL scripts for business logic (joins,  window functions).  
+  `olist_queries.sql`：业务逻辑 SQL 脚本（联结、窗口函数）。
 
 - `olist_Data_analysis.pdf` (or `images/`): Power BI dashboard screenshots.  
   `olist_Data_analysis.pdf`（或 `images/`）：Power BI 仪表盘截图。
