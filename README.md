@@ -32,12 +32,10 @@ This section documents the key SQL queries and data cleaning steps used in this 
 - **Input tables / 输入表**: `olist_orders`, `olist_order_items`, `olist_products`, `olist_order_reviews`
 - **Output / 输出**: `product_category`, `total_sales`, `total_orders`, `avg_review_score`
 
-### 5. Data Cleaning Notes / 数据清洗说明
+### 5. Data Processing Notes / 数据处理说明
 
 - Filtered `order_status = 'delivered'` to exclude incomplete orders.  
   只保留 `order_status = 'delivered'` 的订单，排除未完成订单。
-- Handled null `review_score` values.  
-  处理了 `review_score` 为空值的记录。
 - Used `DATEDIFF` to calculate `delivery_days`, excluded negative or outlier values.  
   使用 `DATEDIFF` 计算 `delivery_days`，排除负值或异常值。
 
@@ -45,7 +43,7 @@ This section documents the key SQL queries and data cleaning steps used in this 
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
 核心发现：准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
-建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，并将预警阈值前移至“延迟满3天”触发客服主动介入。
+建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，建议先识别可能延迟的订单，再根据风险程度决定是否升级处理。
 
 
 ## 📌 Project Overview / 项目概述
@@ -71,18 +69,18 @@ How should the platform identify and handle high-risk orders?
 1. **SQL ( Window Functions)** — calculated delivery time, flagged delays, performed RFM segmentation.  
    **SQL（窗口函数）** — 计算履约时长，标记延迟订单，进行 RFM 分层。
 
-2. **Power BI (DAX, Star Schema)** — built dynamic review attribution model, interactive dashboards.  
-   **Power BI（DAX、星型模型）** — 构建动态评分归因模型，制作交互式仪表盘。
+2. **Power BI (DAX, Star Schema)** — Build dynamic metrics using DAX and analyze score differences through interactive dashboards.
+   **Power BI（DAX、星型模型）** — 使用 DAX 构建动态指标，并通过交互式仪表盘分析评分差异。
 
-3. **Data Cleaning** — filtered, handled nulls and outliers. `order_status = 'delivered'`  
-   **数据清洗** — 过滤数据，处理空值和异常值。`order_status = 'delivered'`
+3. **Data Processing** — Based on the Olist dataset provided by Kaggle, completed orders are selected according to the analysis objectives, and the date fields, missing ratings, and analysis scope are processed according to the project definitions. 
+  **数据处理**：基于 Kaggle 提供的 Olist 数据集，根据分析目标筛选已完成订单，并按照项目定义处理日期字段、缺失评分和分析范围。
 
 ---
 
 ## 🔍 Key Insights / 核心发现
 
 1. **On time/early 4.21 points → Delayed 1–7 days 2.68 points → Delayed more than 7 days 1.69 points. Based on this, it is recommended to move the early warning threshold forward to orders that are not completed on time and trigger proactive customer service intervention. 
-   **准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分** 据此建议将预警阈值前移至未能准时完成的订单并触发客服主动介入。
+   **准时/提前 4.21分 → 延迟1–7 天 2.68分 → 延迟7天以上 1.69分** 据此建议先识别可能延迟的订单，再根据风险程度决定是否需要触发客服主动介入。
 
 2. **Sales Trends**: The three main markets are SP, RJ and MG.  
    **销售趋势**：三大主要市场包括 SP / RJ / MG。
@@ -91,14 +89,14 @@ How should the platform identify and handle high-risk orders?
    **客户分层**：构建 RFM 模型识别高价值客户。
 
 4. **Observed anomaly in AC state for cool_stuff**:
-   Based on a sample size threshold of ≥30, priority should be given to states with low ratings but sufficient sample sizes, such as MA (3.61). This highlights the importance of verifying data adequacy before drawing business conclusions; future analyses should set a minimum order threshold (e.g. >30 reviews) to ensure statistical significance. 
+   Preliminary analysis shows that the average rating for the cool_stuff category in AC state is only 1.00, and it was once listed as an area requiring urgent attention. After reviewing the sample size, it was confirmed that this conclusion was based on only one order, and it has been retracted.
    **AC 州 cool_stuff 品类异常值观察**：
-   基于样本量≥30阈值后，优先关注MA(3.61)等样本充足的低评分州。这凸显了在得出商业结论前验证数据充分性的重要性,未来分析应设定最低订单阈值（如 >30 条评价）以确保统计相关性。
+   初步分析显示 AC 州 cool_stuff 品类平均评分仅 1.00，一度被列为需紧急处理的区域，回溯样本量后确认该结论仅由 1 条订单构成，已撤回。
 
 5. **RFM analysis identifies a high-value customer segment** — targeted retention strategies can improve LTV.  
    **RFM 分析识别出高价值客户群** — 针对性留存策略可提升客户终身价值（LTV）。
 
---注：物流时效基于日期（Date）粒度计算，不足24小时的差异视为当天达，归类为‘准时’。
+--注：物流时效以日期（Date）粒度计算，不考虑具体时分秒；实际送达日期不晚于承诺送达日期的订单归类为“准时/提前”，晚于承诺送达日期的订单按自然日差进行延迟分组。
 
 ---
 
