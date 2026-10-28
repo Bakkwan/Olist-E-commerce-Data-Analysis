@@ -43,7 +43,7 @@ This section documents the key SQL queries and data cleaning steps used in this 
 ## 🇨🇳 中文摘要
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
-核心发现：准时/提前(86,984单) 4.21分 → 延迟1–7 天（3,585单） 2.68分 → 延迟7天以上（2,781单） 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
+核心发现：准时/提前(89,936单) 4.29分 → 延迟1–7 天（3,672单） 2.72分 → 延迟7天以上（2,862单） 1.70分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92分）”的组合；RFM 识别出高价值客户群。  
 建议：优先排查 bed_bath_table 品类的履约表现与客户评价，进一步确认其较低评分的可能原因，再评估是否需要针对性优化。
 
 
@@ -80,7 +80,7 @@ How should the platform identify and handle high-risk orders?
 ## 🔍 Key Insights / 核心发现
 
 1. **On time/Early (86,984 orders) 4.21 points → Delayed 1–7 days (3,585 orders) 2.68 points → Delayed more than 7 days (2,781 orders) 1.69 points.It is recommended to first identify orders that may be delayed, and then decide whether to escalate intervention based on the level of risk.
-   **准时/提前(86,984单) 4.21分 → 延迟1–7 天（3,585单） 2.68分 → 延迟7天以上（2,781单） 1.69分** 建议先识别可能延迟的订单，再根据风险程度决定是否升级干预处理。
+   **准时/提前(89,936单) 4.29分 → 延迟1–7 天（3,672单） 2.72分 → 延迟7天以上（2,862单） 1.70分** 建议先识别可能延迟的订单，再根据风险程度决定是否升级干预处理。
 
 2. **Sales Trends**: The three main markets are SP, RJ and MG.  
    **销售趋势**：三大主要市场包括 SP / RJ / MG。
