@@ -171,8 +171,8 @@ Chart 11: Proportion of People vs Contribution Amount / 图表 11：人数占比
 ### ⭐ Proportion of People vs Contribution Amount / 人数占比 vs 金额贡献
 
 **Insight / 发现:**
-- High-value customers have a spending amount of up to 7,694 BRL, with a customer count of 23,542, far fewer than the number of potential customers (34,450) and low-value/at-risk customers (353,666)
-- 高价值客户消费金额高达7,694BRL，客户数为23542，远远少于潜力客户人数（34450）和低价值/流失风险客户（353666）
+- High-value customers have a spending amount of up to 7,694 BRL, with a customer count of 23,542, far fewer than the number of potential customers (34,450) and low-value/at-risk customers (35,366)
+- 高价值客户消费金额高达7,694BRL，客户数为2,3542，远远少于潜力客户人数（3,4450）和低价值/流失风险客户（35,366）
 - There is not much difference in the number of potential customers and low-value/at-risk customers.
 - 潜力客户和低价值/流失风险的客户人数差距不大。
 
