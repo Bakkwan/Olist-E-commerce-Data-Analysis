@@ -31,6 +31,7 @@ This section documents the key SQL queries and data cleaning steps used in this 
   按产品品类汇总销售额、订单量和平均评分，识别低评分品类。
 - **Input tables / 输入表**: `olist_orders`, `olist_order_items`, `olist_products`, `olist_order_reviews`
 - **Output / 输出**: `product_category`, `total_sales`, `total_orders`, `avg_review_score`
+  注：商品销售额仅包含商品价格，不含运费；用户贡献总金额（GMV）包含商品价格+运费
 
 ### 5. Data Processing Notes / 数据处理说明
 
@@ -43,7 +44,7 @@ This section documents the key SQL queries and data cleaning steps used in this 
 
 本项目分析 Olist 电商平台物流延迟对客户评分的影响，使用 SQL 进行数据清洗和 RFM 分层，Power BI 构建可视化仪表盘。  
 核心发现：准时/提前(86,984单) 4.21分 → 延迟1–7 天（3,585单） 2.68分 → 延迟7天以上（2,781单） 1.69分；品类侧定位 bed_bath_table 为唯一“销量头部（9,272 单）+ 评分偏低（3.92）”的组合；RFM 识别出高价值客户群。  
-建议优先bed_bath_table的品类的体验改善以对整体满意度达成拉动最大化，建议先识别可能延迟的订单，再根据风险程度决定是否升级干预处理。
+建议：优先排查 bed_bath_table 品类的履约表现与客户评价，进一步确认其较低评分的可能原因，再评估是否需要针对性优化。
 
 
 ## 📌 Project Overview / 项目概述
@@ -72,8 +73,7 @@ How should the platform identify and handle high-risk orders?
 2. **Power BI (DAX, Star Schema)** — Build dynamic metrics using DAX and analyze score differences through interactive dashboards.
    **Power BI（DAX、星型模型）** — 使用 DAX 构建动态指标，并通过交互式仪表盘分析评分差异。
 
-3. **Data Processing** — Based on the Olist dataset provided by Kaggle, completed orders are selected according to the analysis objectives, and the date fields, missing ratings, and analysis scope are processed according to the project definitions. 
-  **数据处理**：基于 Kaggle 提供的 Olist 数据集，根据分析目标筛选已完成订单，并按照项目定义处理日期字段、缺失评分和分析范围。
+
 
 ---
 
