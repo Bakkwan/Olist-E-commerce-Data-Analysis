@@ -40,8 +40,8 @@
 -- ------------------------------------------------------------
 SELECT 
     CASE 
-        WHEN julianday(order_delivered_customer_date)- julianday(order_estimated_delivery_date) <= 0 THEN 'On Time / Early'
-       WHEN julianday(order_delivered_customer_date)- julianday(order_estimated_delivery_date) BETWEEN 1 AND 7 THEN 'Delayed 1-7 Days'
+        WHEN julianday(date(order_delivered_customer_date))- julianday(order_estimated_delivery_date) <= 0 THEN 'On Time / Early'
+       WHEN julianday(date(order_delivered_customer_date))- julianday(order_estimated_delivery_date) BETWEEN 1 AND 7 THEN 'Delayed 1-7 Days'
         ELSE 'Delayed > 7 Days'
     END AS delivery_status,
     COUNT(DISTINCT o.order_id) AS total_orders,
